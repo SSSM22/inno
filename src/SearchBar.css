@@ -1,35 +1,58 @@
+/* src/SearchBar.css */
 .search-bar {
-    position: relative;
-    max-width: 400px;
-    margin: 20px auto;
-  }
-  
-  .search-bar input {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-  }
-  
-  .autocomplete-suggestions {
-    position: absolute;
-    top: 40px;
-    width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: white;
-    max-height: 200px;
-    overflow-y: auto;
-    z-index: 10;
-  }
-  
-  .autocomplete-suggestions li {
-    padding: 10px;
-    cursor: pointer;
-  }
-  
-  .autocomplete-suggestions li:hover {
-    background-color: #f0f0f0;
-  }
-  
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  background-image: url('/src/paper.jpg'); /* Path to your image */
+  background-size: cover; /* Cover the entire area */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.loading {
+  text-align: center;
+  font-size: 14px;
+  color: #888;
+  margin-top: 10px;
+}
+
+.suggestions-list {
+  border: 1px solid #ddd;
+  border-top: none;
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: #fff;
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  margin-top: 2px;
+  border-radius: 4px; /* Add rounded corners */
+}
+
+.suggestions-list li {
+  padding: 1px;
+  cursor: pointer;
+  color: #030303; /* Text color for better readability */
+}
+
+.suggestions-list li.selected {
+  background-color: #d3d3d3; /* Highlighted background for selected item */
+  font-weight: italic; /* Optional: Make selected item stand out */
+}
+
+.suggestions-list li:hover,
+.suggestions-list li:focus {
+  background-color: #e0e0e0; /* Slightly different hover effect */
+  outline: none; /* Remove default focus outline */
+}
+

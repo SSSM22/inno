@@ -1,36 +1,52 @@
-import React, { useState } from 'react';
-import './SearchBar.css';  // Assuming you'll style the component with a separate CSS file
+// src/SearchBar.js
+import React, { useState, useEffect } from 'react';
+import countriesData from './aa.json'; // Import the JSON data
+import './SearchBar.css'; // For custom styles
 
-const SearchBar = ({ countries }) => {
-  const [searchInput, setSearchInput] = useState('');
-  const [filteredCountries, setFilteredCountries] = useState([]);
+const SearchBar = () => {
+  const [query, setQuery] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  // Handle input changes
-  const handleInputChange = (e) => {
-    const value = e.target.value.toLowerCase();
-    setSearchInput(value);
+  useEffect(() => {
+    if (query.trim() === '') {
+      setSuggestions([]);
+      return;
+    }
 
-    // Filter the countries based on the input
-    const filtered = countries.filter((country) =>
-      country.name.toLowerCase().includes(value) ||
-      country.capital.toLowerCase().includes(value)
+    setLoading(true);
+
+    // Debugging: Check the query and data
+    console.log('Search query:', query);
+    console.log('Data length:', countriesData.length);
+
+    // Filter countries based on query
+    const filtered = countriesData.filter(country =>
+      country.country.toLowerCase().includes(query.toLowerCase()) ||
+      country.capital.toLowerCase().includes(query.toLowerCase())
     );
-    setFilteredCountries(filtered);
-  };
+
+    // Debugging: Check the filtered results
+    console.log('Filtered results:', filtered);
+
+    setSuggestions(filtered);
+    setLoading(false);
+  }, [query]);
 
   return (
     <div className="search-bar">
       <input
         type="text"
-        placeholder="Search by country name or capital..."
-        value={searchInput}
-        onChange={handleInputChange}
+        placeholder="Search by country name or capital"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
       />
-      {searchInput && (
-        <ul className="autocomplete-suggestions">
-          {filteredCountries.map((country) => (
-            <li key={country.name}>
-              {country.name} - {country.capital}
+      {loading && <div className="loading">Loading...</div>}
+      {suggestions.length > 0 && (
+        <ul className="suggestions-list">
+          {suggestions.map((country, index) => (
+            <li key={index}>
+              {country.country} - {country.capital}
             </li>
           ))}
         </ul>
