@@ -1,0 +1,35 @@
+.search-bar {
+    position: relative;
+    max-width: 400px;
+    margin: 20px auto;
+  }
+  
+  .search-bar input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .autocomplete-suggestions {
+    position: absolute;
+    top: 40px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 10;
+  }
+  
+  .autocomplete-suggestions li {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .autocomplete-suggestions li:hover {
+    background-color: #f0f0f0;
+  }
+  
